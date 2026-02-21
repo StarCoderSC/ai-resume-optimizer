@@ -67,7 +67,7 @@ if resume_file and job_file:
             else:
                 st.session_state.last_call = current_time
 
-            with st,spinner("Generating full AI review..."):
+            with st.spinner("Generating full AI review..."):
                 feedback = analyzer.analyze_resume_with_ai()
 
             st.subheader("AI Resume Review")
