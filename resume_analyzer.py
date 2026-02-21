@@ -124,15 +124,22 @@ class ResumeAnalyzer:
 
         Bullet: {bullet_text}"""
 
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[
-                {"role": "system", "content": "You are a professional resume coach."},
-                {"role": "user", "content": prompt}
-            ]
-        )
+        try:
+            response = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[
+                    {"role": "system", "content": "You are a professional resume coach."},
+                    {"role": "user", "content": prompt}
+                ]
+            )
 
-        return response.choices[0].message.content.strip()
+            return response.choices[0].message.content.strip()
+        
+        except RateLimitError:
+            return "⚠️ The Service is currently busy. Please try again in a minute."
+
+        except Exception as e:
+            return "⚠️ Something went wrong. Please try again later."
 
     
     def analyze_resume_with_ai(self):
@@ -164,15 +171,22 @@ class ResumeAnalyzer:
         {self.job_text}
         """
 
-        response = client.chat.completions.create(
-            model="gpt-4o-mini",
-            messages=[
-                {"role": "system", "content": "You are an expert resume reviewer"},
-                {"role": "user", "content": prompt}
-            ]
-        )
+        try:
+            response = client.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[
+                    {"role": "system", "content": "You are an expert resume reviewer"},
+                    {"role": "user", "content": prompt}
+                ]
+            )
 
-        return response.choices[0].message.content.strip()
+            return response.choices[0].message.content.strip()
+        except RateLimitError:
+            return "⚠️ The Service is currently busy. Please try again in a minute."
+
+        except Exception as e:
+            return "⚠️ Something went wrong. Please try again later."
+
 
 
     def print_summary(self):
