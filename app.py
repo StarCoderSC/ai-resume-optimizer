@@ -115,4 +115,4 @@ if st.button("Improve Bullet"):
 st.divider()
 st.markdown("###  Want Unlimited AI Reviews?")
 st.markdown("Message me for premium access")
-st.markdown("Contact: starcoder.dev@gmail.com | Linkedln: https://linkedln.com/in/starcoder-sc-8698893b2")
+st.markdown("Contact: starcoder.dev@gmail.com | Linkedln: https://linkedin.com/in/starcoder-sc-8698893b2")
