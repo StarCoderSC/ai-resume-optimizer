@@ -13,11 +13,18 @@ st.set_page_config(
 if "last_call" not in st.session_state:
     st.session_state.last_call = 0
 
+if "review_count" not in st.session_state:
+    st.session_state.review_count = 0
+
+
 st.title("AI Resume Analyzer")
+st.divider()
 st.markdown("### Optimize your resume for better job matches")
+st.markdown("### 🚀 Want Unlimited Reviews?")
+st.markdown("DM me for Premium Access")
 st.markdown("Upload your resume and job description to get instant insights.")
 
-st.divider()
+
 
 resume_file = st.file_uploader("Upload Resume (.pdf or .txt)", type=["pdf", "txt"])
 job_file = st.file_uploader("Upload Job Description (.pdf or .txt)", type=["pdf", "txt"])
@@ -49,18 +56,22 @@ if resume_file and job_file:
         st.write(",".join(sorted(missing)))
     
     if st.button("Get Full AI Review"):
-        current_time = time.time()
-
-        if current_time - st.session_state.last_call < 10:
-            st.warning("Please wait a few seconds before trying again.")
+        if st.session_state.review_count >= 3:
+            st.warning("Free limit reached. if you like unlimited reviews, message me for premium access.")
+        
         else:
-            st.session_state.last_call = current_time
+            current_time = time.time()
 
-        with st,spinner("Generating full AI review..."):
-            feedback = analyzer.analyze_resume_with_ai()
+            if current_time - st.session_state.last_call < 10:
+                st.warning("Please wait a few seconds before trying again.")
+            else:
+                st.session_state.last_call = current_time
 
-        st.subheader("AI Resume Review")
-        st.markdown(feedback)
+            with st,spinner("Generating full AI review..."):
+                feedback = analyzer.analyze_resume_with_ai()
+
+            st.subheader("AI Resume Review")
+            st.markdown(feedback)
 
 
 st.divider()
@@ -85,6 +96,3 @@ if st.button("Improve Bullet"):
             analyzer = ResumeAnalyzer("", "")
             improved = analyzer.improve_bullet_point(bullet)
         st.write(improved)
-
-
-
