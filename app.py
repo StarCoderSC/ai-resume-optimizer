@@ -1,7 +1,7 @@
 import streamlit as st
 from resume_analyzer import ResumeAnalyzer
 import time
-
+import streamlit.components.v1 as components
 
 st.info("🚀 Beta Version -- Free Resume Reviews for Early Users")
 
@@ -9,6 +9,20 @@ st.set_page_config(
     page_title="AI Resume Optimizer",
     page_icon="🚀",
     layout="centered"
+)
+
+components.html(
+    """
+    <!-- Google tag (gtag.js) --> 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4ZB9K4VD3F"></script>
+    <script>
+        window.dataLayer = Window.dataLayer || [];
+        function gtag() {dataLayer.push(arguments);}
+        gtag('js', new Date()):
+        gtag('config', 'G-4ZB9K4VD3F');
+    </script>
+    """,
+    height=0,
 )
 
 st.title("AI Resume Analyzer")
