@@ -13,12 +13,13 @@ st.set_page_config(
 
 components.html(
     """
-    <!-- Google tag (gtag.js) --> 
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-4ZB9K4VD3F"></script>
     <script>
-        window.dataLayer = Window.dataLayer || [];
-        function gtag() {dataLayer.push(arguments);}
-        gtag('js', new Date()):
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
         gtag('config', 'G-4ZB9K4VD3F');
     </script>
     """,
